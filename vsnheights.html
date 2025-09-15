@@ -44,12 +44,12 @@
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Video Background -->
     <video class="video-background" autoplay muted loop playsinline>
-        <source src="C:\Users\madep\OneDrive\Desktop\a.mp4" type="video/mp4">
+        <source data-cache-bust src="/vsn.mp4" type="video/mp4">
+        <source data-cache-bust src="project/public/vsn.mp4" type="video/mp4">
+        <source data-cache-bust src="vsn.mp4" type="video/mp4">
     </video>
     
-    <!-- Video Overlay -->
     <div class="video-overlay"></div>
     <nav class="fixed top-0 left-0 right-0 z-40 bg-white/20 nav-blur border-b border-white/10 content-layer">
         <div class="max-w-6xl mx-auto px-4 lg:px-8">
@@ -87,26 +87,8 @@
         </div>
     </nav>
 
-    <div class="fixed top-16 left-0 right-0 z-30 bg-gradient-to-r from-green-600 to-teal-600 text-white py-2 text-sm content-layer">
-        <div class="max-w-6xl mx-auto px-4 lg:px-8">
-            <div class="flex items-center justify-center space-x-6 overflow-x-auto">
-                <div class="flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="phone" class="w-4 h-4"></i>
-                    <span>+91 98765 43210</span>
-                </div>
-                <div class="flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                    <span>info@vsnheights.in</span>
-                </div>
-                <div class="flex items-center space-x-2 whitespace-nowrap">
-                    <i data-lucide="map-pin" class="w-4 h-4"></i>
-                    <span>Mumbai, Maharashtra</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="pt-24 content-layer">
+    <div class="pt-16 content-layer">
         <section id="hero" class="relative h-screen overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
             
@@ -701,6 +683,17 @@
         // Video background handling
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.querySelector('.video-background');
+            const sources = Array.from(document.querySelectorAll('source[data-cache-bust]'));
+            if (sources.length > 0) {
+                const ts = Date.now();
+                sources.forEach(s => {
+                    const baseSrc = s.getAttribute('src') || '';
+                    // Avoid duplicating query if already present
+                    const sep = baseSrc.includes('?') ? '&' : '?';
+                    s.src = baseSrc + sep + 'v=' + ts;
+                });
+                video.load();
+            }
             
             // Try to play video
             video.play().catch(function(error) {
@@ -722,3 +715,4 @@
     </script>
 </body>
 </html>
+
