@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSN Heights Villa - Indian Real Estate</title>
+    <meta name="description" content="Simple and elegant villa showcase in India. 3-bedroom villa with modern amenities and beautiful location.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .text-gradient { background: linear-gradient(to right, #059669, #0d9488); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-bg { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%); }
+        .feature-card { transition: all 0.2s ease; }
+        .feature-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .nav-blur { backdrop-filter: blur(8px); }
+        .villa-image { object-fit: cover; transition: transform 0.2s ease; }
+        .villa-image:hover { transform: scale(1.02); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+        
+        .content-layer {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="C:\Users\madep\OneDrive\Desktop\a.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/20 nav-blur border-b border-white/10 content-layer">
+        <div class="max-w-6xl mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-green-600 to-teal-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">VH</span>
+                    </div>
+                    <div class="text-gray-800">
+                        <div class="font-bold text-lg">VSN Heights</div>
+                        <div class="text-xs text-gray-600">Indian Real Estate</div>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#hero" class="text-gray-700 hover:text-green-600 transition-colors">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-green-600 transition-colors">Features</a>
+                    <a href="#location" class="text-gray-700 hover:text-green-600 transition-colors">Location</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-green-600 transition-colors">Pricing</a>
+                    <button onclick="openContact()" class="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200">Contact</button>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobileMenu" class="hidden md:hidden bg-white/20 nav-blur border-t border-white/10">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#hero" class="block text-gray-700 hover:text-green-600 transition-colors">Home</a>
+                <a href="#features" class="block text-gray-700 hover:text-green-600 transition-colors">Features</a>
+                <a href="#location" class="block text-gray-700 hover:text-green-600 transition-colors">Location</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-green-600 transition-colors">Pricing</a>
+                <button onclick="openContact()" class="block w-full text-left bg-gradient-to-r from-green-600 to-teal-600 text-white px-4 py-2 rounded-lg font-medium">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed top-16 left-0 right-0 z-30 bg-gradient-to-r from-green-600 to-teal-600 text-white py-2 text-sm content-layer">
+        <div class="max-w-6xl mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-center space-x-6 overflow-x-auto">
+                <div class="flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span>+91 98765 43210</span>
+                </div>
+                <div class="flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>info@vsnheights.in</span>
+                </div>
+                <div class="flex items-center space-x-2 whitespace-nowrap">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>Mumbai, Maharashtra</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-24 content-layer">
+        <section id="hero" class="relative h-screen overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
+            
+            <div class="relative z-10 h-full flex items-center justify-between px-6 lg:px-12">
+                <div class="max-w-2xl text-gray-800">
+                    <div class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm mb-6">
+                        🏡 Indian Real Estate
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+                        Modern Villa
+                        <span class="block text-gradient">VSN Heights</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        Beautiful 3-bedroom villa in Mumbai with modern amenities, garden space, and peaceful neighborhood. Perfect for Indian families.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openTour()" class="px-6 py-3 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 rounded-lg font-medium text-white transition-all duration-200">
+                            Schedule Visit
+                        </button>
+                        <button onclick="openDetails()" class="px-6 py-3 bg-white/80 hover:bg-white border border-gray-300 rounded-lg font-medium text-gray-700 transition-all duration-200">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block max-w-sm">
+                    <div class="bg-white/20 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+                        <div class="text-gray-800">
+                            <div class="text-3xl font-bold mb-2">₹2.5 Cr</div>
+                            <div class="text-gray-600 mb-6">Starting Price</div>
+                            
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Bedrooms</span>
+                                    <span class="font-semibold">3</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Bathrooms</span>
+                                    <span class="font-semibold">2</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Area</span>
+                                    <span class="font-semibold">1,800 sq ft</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Garden</span>
+                                    <span class="font-semibold">Yes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+                <div class="flex flex-col items-center text-gray-600">
+                    <span class="text-sm mb-2">Scroll to Explore</span>
+                    <i data-lucide="chevron-down" class="w-6 h-6"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 bg-white/10 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        Villa <span class="text-gradient">Features</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Modern amenities designed for Indian family living
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="wifi" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Modern Kitchen</h3>
+                        <p class="text-gray-600 mb-4">Fully equipped kitchen with modern appliances, granite countertops, and storage space.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="home" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Garden Space</h3>
+                        <p class="text-gray-600 mb-4">Private garden area perfect for Indian families, with space for plants and outdoor activities.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="car" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Parking Space</h3>
+                        <p class="text-gray-600 mb-4">Covered parking for 2 cars with additional space for visitors.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Security</h3>
+                        <p class="text-gray-600 mb-4">24/7 security with CCTV cameras and gated community access.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="droplets" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Water Supply</h3>
+                        <p class="text-gray-600 mb-4">24/7 water supply with backup storage and modern plumbing system.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+
+                    <div class="feature-card bg-white/20 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Power Backup</h3>
+                        <p class="text-gray-600 mb-4">Inverter backup for essential appliances during power cuts.</p>
+                        <div class="text-green-600 font-medium">Included</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="py-16 bg-gray-50/10 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                            Great <span class="text-gradient">Location</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Located in a peaceful neighborhood in Mumbai with easy access to all essential amenities and services.
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center justify-between p-4 rounded-lg bg-white/20 backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Phoenix MarketCity</div>
+                                        <div class="text-sm text-gray-600">5 min drive</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg bg-white/20 backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">DPS International School</div>
+                                        <div class="text-sm text-gray-600">8 min drive</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg bg-white/20 backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="heart" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Apollo Hospital</div>
+                                        <div class="text-sm text-gray-600">10 min drive</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg bg-white/20 backdrop-blur-sm border border-white/10 hover:bg-white/30 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="train" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-900">Andheri Railway Station</div>
+                                        <div class="text-sm text-gray-600">12 min drive</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-4 bg-gradient-to-r from-green-50/30 to-teal-50/30 backdrop-blur-sm rounded-lg border border-white/10">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-green-600"></i>
+                            <div>
+                                <div class="font-semibold text-gray-900">Address</div>
+                                <div class="text-gray-600">VSN Heights, Andheri West, Mumbai - 400058</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="aspect-square rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-green-100 to-teal-100 relative">
+                            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&h=600&fit=crop" 
+                                 alt="Mumbai Location" 
+                                 class="w-full h-full object-cover opacity-90">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-white text-center bg-black/50 rounded-lg p-4">
+                                    <i data-lucide="map-pin" class="w-8 h-8 mx-auto mb-2"></i>
+                                    <div class="text-lg font-bold">Villa Location</div>
+                                    <div class="text-sm">Mumbai, Maharashtra</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 grid grid-cols-2 gap-4">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-3 shadow-sm border border-white/10">
+                                <div class="text-lg font-bold text-gray-900">Good</div>
+                                <div class="text-sm text-gray-600">Connectivity</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-3 shadow-sm border border-white/10">
+                                <div class="text-lg font-bold text-gray-900">A+</div>
+                                <div class="text-sm text-gray-600">School Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="py-16 bg-white/10 backdrop-blur-sm">
+            <div class="max-w-6xl mx-auto px-4 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        Villa <span class="text-gradient">Pricing</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Affordable pricing for a beautiful home in Mumbai
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+                        <div class="text-center mb-8">
+                            <div class="text-sm text-gray-600 mb-2">Starting from</div>
+                            <div class="text-5xl font-bold text-gray-900">₹2.5 Cr</div>
+                            <div class="text-gray-600 mt-2">All inclusive</div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <span class="text-gray-700">Fully furnished</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <span class="text-gray-700">Modern kitchen appliances</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <span class="text-gray-700">Garden space included</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <span class="text-gray-700">Parking for 2 cars</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                </div>
+                                <span class="text-gray-700">24/7 security</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button onclick="openTour()" class="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 rounded-lg font-medium text-white transition-all duration-200 flex items-center justify-center space-x-2">
+                                <i data-lucide="calendar" class="w-5 h-5"></i>
+                                <span>Schedule Visit</span>
+                            </button>
+                            
+                            <button onclick="openContact()" class="w-full px-6 py-3 bg-white hover:bg-gray-50 border border-gray-300 rounded-lg font-medium text-gray-700 transition-all duration-200 flex items-center justify-center space-x-2">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                                <span>Contact Agent</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Choose This Villa?</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Perfect for Indian families looking for a modern home in Mumbai. Great location with all essential amenities nearby.
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                                <div class="text-xl font-bold text-gray-900">Ready</div>
+                                <div class="text-gray-600">Move-in</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                                <div class="text-xl font-bold text-gray-900">3 BHK</div>
+                                <div class="text-gray-600">Layout</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                                <div class="text-xl font-bold text-gray-900">1800</div>
+                                <div class="text-gray-600">Sq Ft</div>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+                                <div class="text-xl font-bold text-gray-900">Garden</div>
+                                <div class="text-gray-600">Included</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50/30 backdrop-blur-sm border border-green-200/30 rounded-lg p-4">
+                            <div class="text-green-800 font-medium mb-2">📞 Call Now for Best Price</div>
+                            <div class="text-green-700 text-sm">Special discount available for early buyers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-gray-800/90 text-white py-12 content-layer">
+        <div class="max-w-6xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-green-600 to-teal-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">VH</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-lg">VSN Heights</div>
+                            <div class="text-sm text-gray-400">Indian Real Estate</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Beautiful homes for Indian families in Mumbai. Quality construction with modern amenities.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-gray-400 hover:text-green-400 transition-colors text-sm">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-green-400 transition-colors text-sm">Features</a></li>
+                        <li><a href="#location" class="text-gray-400 hover:text-green-400 transition-colors text-sm">Location</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-green-400 transition-colors text-sm">Pricing</a></li>
+                        <li><button onclick="openContact()" class="text-gray-400 hover:text-green-400 transition-colors text-sm">Contact</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>Property Sales</li>
+                        <li>Home Loans</li>
+                        <li>Legal Support</li>
+                        <li>Registration</li>
+                        <li>Maintenance</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                            <span class="text-gray-400 text-sm">+91 98765 43210</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-green-400"></i>
+                            <span class="text-gray-400 text-sm">info@vsnheights.in</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-green-400"></i>
+                            <span class="text-gray-400 text-sm">Mumbai, Maharashtra</span>
+                        </div>
+                    </div>
+                    
+                    <button onclick="openContact()" class="mt-4 w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm">
+                        Get In Touch
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 VSN Heights. All rights reserved.
+                    </p>
+                    <div class="flex space-x-4 mt-2 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-sm transition-colors">Privacy</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 text-sm transition-colors">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="fixed inset-0 z-50 hidden content-layer">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="fixed inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+                <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-t-xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                            <h2 class="text-xl font-bold" id="modalTitle">Contact Our Agent</h2>
+                        </div>
+                        <button onclick="closeModal()" class="p-1 hover:bg-white/20 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                                <div class="relative">
+                                    <i data-lucide="user" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                                    <input type="text" name="name" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Enter your full name">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                <div class="relative">
+                                    <i data-lucide="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                                    <input type="email" name="email" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Enter your email">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                                <div class="relative">
+                                    <i data-lucide="phone" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                                    <input type="tel" name="phone" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Enter your phone number">
+                                </div>
+                            </div>
+
+                            <div id="tourFields" class="hidden">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+                                        <input type="date" name="preferredDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Time</label>
+                                        <select name="preferredTime" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                            <option value="">Select time</option>
+                                            <option value="morning">Morning (9-12 PM)</option>
+                                            <option value="afternoon">Afternoon (12-5 PM)</option>
+                                            <option value="evening">Evening (5-8 PM)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none" placeholder="Tell us more about your requirements..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                                <span>Submit Request</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Global variables
+        let currentModalType = 'contact';
+
+        // Navigation functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modal functions
+        function openContact() {
+            currentModalType = 'contact';
+            document.getElementById('modalTitle').textContent = 'Contact Our Agent';
+            document.getElementById('tourFields').classList.add('hidden');
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function openTour() {
+            currentModalType = 'tour';
+            document.getElementById('modalTitle').textContent = 'Schedule Private Tour';
+            document.getElementById('tourFields').classList.remove('hidden');
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function openDetails() {
+            currentModalType = 'details';
+            document.getElementById('modalTitle').textContent = 'Request Details';
+            document.getElementById('tourFields').classList.add('hidden');
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div><span>Submitting...</span>';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                alert('Thank you for your request! Our team will contact you within 24 hours.');
+                closeModal();
+                submitBtn.innerHTML = originalContent;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                });
+            });
+
+            // Add scroll effect to navigation
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 100) {
+                    nav.classList.add('bg-black/40');
+                } else {
+                    nav.classList.remove('bg-black/40');
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.fixed.inset-0.bg-black\\/50')) {
+                closeModal();
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Video background handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            
+            // Try to play video
+            video.play().catch(function(error) {
+                console.log('Video autoplay failed:', error);
+                // Fallback: show a static background image
+                document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop&crop=center")';
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center';
+                document.body.style.backgroundAttachment = 'fixed';
+                console.log('Using fallback background image');
+            });
+            
+            // Ensure video loops properly
+            video.addEventListener('ended', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+        });
+    </script>
+</body>
+</html>
